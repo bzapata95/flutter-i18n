@@ -1,0 +1,8 @@
+{
+  "helloWold": "Hello World",
+  "summary": "SUMMARY",
+  "productName": "Product: {{name}}",
+  "price": "Price: {{price}}",
+  "releaseDate": "Release Date: {{releaseDate}}",
+  "payNow": "PAY NOW: {{payNow}}"
+}

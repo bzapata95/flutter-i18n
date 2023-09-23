@@ -1,0 +1,8 @@
+{
+  "helloWold": "Hola Perú",
+  "summary": "RESUMEN",
+  "productName": "Producto: {{name}}",
+  "price": "Precio: {{price}}",
+  "releaseDate": "Fecha de liberación: {{releaseDate}}",
+  "payNow": "PAGAR AHORA: {{payNow}}"
+}

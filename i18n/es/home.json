@@ -1,0 +1,8 @@
+{
+  "helloWold": "Hola Mundo",
+  "summary": "RESUMEN",
+  "productName": "Producto: {{name}}",
+  "price": "Precio: {{price}}",
+  "releaseDate": "Fecha de liberación: {{releaseDate}}",
+  "payNow": "PAGAR AHORA: {{payNow}}"
+}

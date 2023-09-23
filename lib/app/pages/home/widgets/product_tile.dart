@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:i18n/app/models/product.dart';
+import 'package:i18n/generated/translations.g.dart';
 import 'package:intl/intl.dart';
 
 class ProductTile extends StatelessWidget {
@@ -50,7 +50,7 @@ class ProductTile extends StatelessWidget {
   }
 
   Future<void> _show(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final texts = Translations.of(context);
     return showModalBottomSheet(
       context: context,
       builder: (_) => SafeArea(
@@ -62,24 +62,25 @@ class ProductTile extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  localizations.summary,
+                  texts.home.summary,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 20),
-              Text(localizations.productName(product.name)),
-              Text(localizations.price(
-                NumberFormat.currency().format(product.price),
+              Text(texts.home.productName(name: product.name)),
+              Text(texts.home.price(
+                price: NumberFormat.currency().format(product.price),
               )),
-              Text(localizations
-                  .releaseDate(DateFormat.yMEd().format(product.releaseDate))),
+              Text(texts.home.releaseDate(
+                releaseDate: DateFormat.yMEd().format(product.releaseDate),
+              )),
               const SizedBox(height: 30),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text(localizations
-                      .payNow(NumberFormat.currency().format(product.price))),
+                  child: Text(texts.home.payNow(
+                      payNow: NumberFormat.currency().format(product.price))),
                 ),
               ),
             ],

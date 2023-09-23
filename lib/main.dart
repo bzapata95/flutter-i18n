@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i18n/app/my_app.dart';
+import 'package:i18n/generated/translations.g.dart';
 import 'package:i18n/number_format_ext.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -8,6 +9,7 @@ import 'package:intl/number_symbols_data.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  LocaleSettings.useDeviceLocale();
 
   final languageCode =
       WidgetsBinding.instance.platformDispatcher.locale.languageCode;
@@ -30,8 +32,9 @@ void main() {
   numberFormatSymbols['en'] = esUS.copyWith(currencySymbol: r'$');
   numberFormatSymbols['es_PE'] = esUS.copyWith(currencySymbol: 'S/ ');
 
-  runApp(MyApp(
-    defaultLanguageCode: languageCode,
-    defaultCountryCode: countryCode ?? '',
-  ));
+  runApp(
+    TranslationProvider(
+      child: const MyApp(),
+    ),
+  );
 }
