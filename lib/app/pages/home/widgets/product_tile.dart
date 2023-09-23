@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:i18n/app/models/product.dart';
 import 'package:intl/intl.dart';
 
@@ -49,6 +50,7 @@ class ProductTile extends StatelessWidget {
   }
 
   Future<void> _show(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return showModalBottomSheet(
       context: context,
       builder: (_) => SafeArea(
@@ -58,24 +60,26 @@ class ProductTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Center(
+              Center(
                 child: Text(
-                  'SUMMARY',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  localizations.summary,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 20),
-              Text('Product: ${product.name}'),
-              Text(
-                  'Price: ${NumberFormat('###,###.##').format(product.price)}'),
-              Text(
-                  'Release date: ${DateFormat.yMEd().format(product.releaseDate)}'),
+              Text(localizations.productName(product.name)),
+              Text(localizations.price(
+                NumberFormat.currency().format(product.price),
+              )),
+              Text(localizations
+                  .releaseDate(DateFormat.yMEd().format(product.releaseDate))),
               const SizedBox(height: 30),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text('PAY NOW ${product.price.toStringAsFixed(2)}'),
+                  child: Text(localizations
+                      .payNow(NumberFormat.currency().format(product.price))),
                 ),
               ),
             ],

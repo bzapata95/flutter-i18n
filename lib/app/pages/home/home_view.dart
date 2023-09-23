@@ -1,6 +1,8 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:i18n/app/models/product.dart';
+import 'package:i18n/app/my_app.dart';
 import 'package:i18n/app/pages/home/widgets/product_tile.dart';
 
 class HomeView extends StatefulWidget {
@@ -43,27 +45,33 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final appState = context.findAncestorStateOfType<MyAppState>();
+    print('🤮 ${appState?.local}');
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hello world'),
+        title: Text(AppLocalizations.of(context)!.helloWold),
         actions: [
           DropdownButton(
-            value: const Locale('en', 'US'),
+            value: appState?.local,
             items: const [
               DropdownMenuItem(
-                value: Locale('en', 'US'),
+                value: Locale('en'),
                 child: Text('English'),
               ),
               DropdownMenuItem(
-                value: Locale('es', 'ES'),
+                value: Locale('es'),
                 child: Text('Español'),
               ),
               DropdownMenuItem(
-                value: Locale('es', 'EC'),
-                child: Text('Español Ecuador'),
+                value: Locale('es', 'PE'),
+                child: Text('Español Perú'),
               ),
             ],
-            onChanged: (_) {},
+            onChanged: (locale) {
+              if (locale != null) {
+                appState?.changeLanguage(locale);
+              }
+            },
           ),
         ],
       ),
